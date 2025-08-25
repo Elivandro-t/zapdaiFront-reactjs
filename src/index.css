@@ -3,6 +3,8 @@
   --cor-font:#ff3c00;
   --height:100vh;
   --cor-auth:#f1f4f8;
+  --background: linear-gradient(135deg, #ff3c00 0%, #ff6a00 50%, #ff2e00 100%);
+
 }
 *{
   margin: 0;
