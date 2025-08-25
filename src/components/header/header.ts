@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export default {
   container: styled.header`
+  position: fixed;
+  width: 100%;
     display:flex;
     justify-content: space-between;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
