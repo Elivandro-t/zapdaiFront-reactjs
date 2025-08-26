@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { SimpleDialog } from "../detalhesProdutos/detalhesProdutos";
 
 
 type produtos = {
@@ -32,6 +33,18 @@ export const ItensComponent = (produtos: produtos) => {
       });
     }
   };
+   const [open, setOpen] = React.useState(false);
+   const [lista, setLista] = React.useState<any>(null);
+  
+    const handleClickOpen = (item:any) => {
+      setLista(item)
+      setOpen(true);
+    };
+  
+    const handleClose = (value: string) => {
+      setOpen(false);
+    };
+  
   return (
     <Section>
       {produtos.items.length == 0 && (
@@ -55,7 +68,7 @@ export const ItensComponent = (produtos: produtos) => {
             </NavButton>
             <ItemsRow ref={produtos.ref}>
               {produtos.items.map((item) => (
-                <Card key={item.idProduto}>
+                <Card key={item.idProduto} onClick={()=>handleClickOpen(item)}>
                   <Image src={item.imgProduct} alt={item.nome} />
                   <h3>{item.nome}</h3>
                   <p>{item.price}</p>
@@ -69,6 +82,7 @@ export const ItensComponent = (produtos: produtos) => {
           </ItemsRowWrapper>
         </>
       )}
+      <SimpleDialog open={open} selectedValue={lista} onClose={ handleClose}></SimpleDialog>
     </Section>
   )
 }

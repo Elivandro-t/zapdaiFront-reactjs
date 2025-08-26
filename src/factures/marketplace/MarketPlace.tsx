@@ -1,13 +1,12 @@
+import { EmpresasParceirasComponent } from "../../components/empresasParceiras/empresasparceiras";
 import { FootComponet } from "../../components/footer/Footter"
 import { HeaderComponent } from "../../components/header/Header"
 import { MainComponent } from "../../components/MainComponent/MainComponet"
-import { BannerSlider } from "../../components/ProdutoCarrocel/produtoCarrossel";
+import { BannerSlider } from "../../components/ProdutoCarrossel/produtoCarrossel";
 import Makert from "./marcketplace"
-import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
-import Button from "@mui/material/Button"
-import Drawer from "@mui/material/Drawer"
-import { useState } from "react"
-
+import { useEffect, useState } from "react"
+import Api from "../../service/api"
+import api from "../../service/api";
 export const MarketPlace = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -15,11 +14,13 @@ export const MarketPlace = () => {
     ) => {
         setDrawerOpen(open);
     };
+     
     return (
         <Makert.container>
             <HeaderComponent />
              <BannerSlider ></BannerSlider>
             <MainComponent></MainComponent>
+            <EmpresasParceirasComponent></EmpresasParceirasComponent>
             <FootComponet></FootComponet>
         </Makert.container>
     )

@@ -70,5 +70,17 @@ color: var(--cor-font);
      position: sticky;
   z-index: 1000;
   top:0;
+   `,
+   categoriasItens:styled.div`
+   padding:20px  0;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   background-color:var(--cor-principal);
+   margin-bottom:10px;
    `
 }
+
+
+ 

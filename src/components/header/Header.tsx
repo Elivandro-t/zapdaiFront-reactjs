@@ -7,17 +7,15 @@ import Badge from '@mui/material/Badge';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import Button from "@mui/material/Button"
-import Drawer from "@mui/material/Drawer"
 import api from "../../service/api"
-import logo from "../../assets/logowhite.png"
-
 import Header from "./header"
 import { useNavigate } from "react-router-dom";
 import { LoadingSecundary } from "../LoadingSecundary/LoadingSecundary";
 import { useEffect, useState } from "react";
-import { ItemsRow } from "../MainComponent/mainCss";
-import { CategoriaItem } from "./CategoriaItem";
 import { CarrinhoDeCompra } from "../carrinhodeCompra/carrinho";
+import { Drower } from "../drawer/drower";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 export const HeaderComponent = () => {
 
     const [loading, setLoading] = useState(false);
@@ -48,13 +46,28 @@ export const HeaderComponent = () => {
     useEffect(() => {
         hendleSearchApi()
     }, [])
-    const [ativo,setAtivo] = useState(false)
-    const hendleAtivoCarrinho = ()=>{
+    const [ativo, setAtivo] = useState(false)
+    const hendleAtivoCarrinho = () => {
         setAtivo(true)
     }
-     const hendleAtivoCarrinhoFalse = ()=>{
+    const hendleAtivoCarrinhoFalse = () => {
         setAtivo(false)
     }
+    const handleClick = () => {
+        console.info('You clicked the Chip.');
+    };
+    const [item,setItem] = useState<any[]>()
+    const handleleng= () => {
+        const json = localStorage.getItem("carditem")
+        if(json!==null){
+            const data = JSON.parse(json);
+            setItem(data)
+        }
+        
+    };
+    useEffect(()=>{
+        handleleng()
+    },[item])
     return (
         <>
             <Header.areaHeader>
@@ -65,8 +78,8 @@ export const HeaderComponent = () => {
                         <AddBusinessIcon />
                         Empresas
                     </Header.ButtomService>
-                    <Header.car  onClick={()=>hendleAtivoCarrinho()}>
-                        <Badge badgeContent={count} color="error">
+                    <Header.car onClick={() => hendleAtivoCarrinho()}>
+                        <Badge badgeContent={item?.length} color="error">
                             <RemoveShoppingCartIcon sx={{ color: 'white' }} />
                         </Badge>
                     </Header.car>
@@ -82,37 +95,27 @@ export const HeaderComponent = () => {
                         <PerfilComponet />
                     </Header.perfil>
                 </Header.container>
-                <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
+                <Header.categoriasItens>
+                   <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
                     <MenuOpenRoundedIcon />
                 </Button>
-
-                <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
-                    <div style={{
-                        width: 250,
-                        display: "flex",
-                        flexDirection: "column",
-                           background: "linear-gradient(135deg, #ff3c00 0%, #ff6a00 50%, #ff2e00 100%)",
-                        padding: 22,
-                    }}>
-                        <img
-                            src={logo} // substitua com o avatar real
-                            alt="Logo da Empresa"
-                            style={{ width: 78, height: "auto", objectFit: "contain" }}
-                        />
-                    </div>
-                    {/* Coloque aqui o conteúdo que você quer mostrar no Drawer */}
-                    <div style={{ width: 250, padding: 16, display: "flex", flexDirection: "column" }}>
-                        {categorias?.flatMap(ItemsRow => (
-                            <CategoriaItem nome={ItemsRow.nome} iconUrl={ItemsRow.icone} />
-
-                        ))}
-
-
-                    </div>
-                </Drawer>
+                <Stack direction="row" spacing={2}>
+                    {
+                        categorias?.flatMap(ItemsRow=>(
+                    <Chip
+                        label={ItemsRow.nome}
+                        variant="outlined"
+                        onClick={handleClick}
+                        icon={<img width={24} height={15} src={ItemsRow.icone}/>}
+                    />
+                        ))
+                    }
+                </Stack>
+                </Header.categoriasItens>
+                <Drower drawerOpen={drawerOpen} toggleDrawer={toggleDrawer(false)} categorias={categorias || []} />
 
             </Header.areaHeader>
-            {ativo&&<CarrinhoDeCompra hendle={hendleAtivoCarrinhoFalse}/>}
+            {ativo && <CarrinhoDeCompra hendle={hendleAtivoCarrinhoFalse} />}
             {
                 loading && <LoadingSecundary />
 

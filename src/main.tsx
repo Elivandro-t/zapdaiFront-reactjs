@@ -7,7 +7,7 @@ import { ProvederContext } from './reducer/context.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ProvederContext>
-       <App />
+         <App />
     </ProvederContext>
   
   </StrictMode>,
