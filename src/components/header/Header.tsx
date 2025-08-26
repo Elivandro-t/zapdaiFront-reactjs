@@ -17,7 +17,9 @@ import { LoadingSecundary } from "../LoadingSecundary/LoadingSecundary";
 import { useEffect, useState } from "react";
 import { ItemsRow } from "../MainComponent/mainCss";
 import { CategoriaItem } from "./CategoriaItem";
+import { CarrinhoDeCompra } from "../carrinhodeCompra/carrinho";
 export const HeaderComponent = () => {
+
     const [loading, setLoading] = useState(false);
 
     const count = 1;
@@ -46,6 +48,13 @@ export const HeaderComponent = () => {
     useEffect(() => {
         hendleSearchApi()
     }, [])
+    const [ativo,setAtivo] = useState(false)
+    const hendleAtivoCarrinho = ()=>{
+        setAtivo(true)
+    }
+     const hendleAtivoCarrinhoFalse = ()=>{
+        setAtivo(false)
+    }
     return (
         <>
             <Header.areaHeader>
@@ -56,7 +65,7 @@ export const HeaderComponent = () => {
                         <AddBusinessIcon />
                         Empresas
                     </Header.ButtomService>
-                    <Header.car  >
+                    <Header.car  onClick={()=>hendleAtivoCarrinho()}>
                         <Badge badgeContent={count} color="error">
                             <RemoveShoppingCartIcon sx={{ color: 'white' }} />
                         </Badge>
@@ -103,6 +112,7 @@ export const HeaderComponent = () => {
                 </Drawer>
 
             </Header.areaHeader>
+            {ativo&&<CarrinhoDeCompra hendle={hendleAtivoCarrinhoFalse}/>}
             {
                 loading && <LoadingSecundary />
 
