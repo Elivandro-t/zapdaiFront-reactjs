@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const ConteinerMain = styled.div`
+width: 100%;
+box-sizing:border-box;
 display: flex;
 flex-direction: column;
-background-color: #171718eb;
+background-color: #2C2C2C;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+
 color: #f5f5f5;
-height: 100vh;
 margin:0;
 `
 export const ConteineTitulo = styled.div`
@@ -114,7 +117,7 @@ padding: 10px;
 `
 
 export const Titulo = styled.span`
-color: orange;
+color: #FF8019;
 font-family:bold;
 font-family:Arial, Helvetica, sans-serif;
 font-size:18px;
@@ -127,7 +130,9 @@ margin:10px 0;
 font-weight:400;
 cursor: pointer;
 color: #888;
-
+&:hover{
+  color: #f5c7a1;
+}
  
 `
 export const FootBottom = styled.div`

@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 export default {
   container: styled.header`
-  position: fixed;
-  width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display:flex;
+    align-items:center;
     justify-content: space-between;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
-    padding:20px 40px;
-    gap:20px;
-background: linear-gradient(135deg, #ff3c00 0%, #ff6a00 50%, #ff2e00 100%);
+    padding:20px 35px;
+    margin: 0%;
+    grid-area: 20px;
+   background: linear-gradient(135deg, #ff3c00 0%, #ff6a00 50%, #ff2e00 100%);
     color: white;
 
     `,
   logo: styled.img`
     width:150px;
+    margin:0;
+    padding:0;
     height:35px;
     object-fit:contain;
     `,
@@ -61,5 +63,12 @@ color: var(--cor-font);
   }
     `,
   iconCar: styled.section``,
-  perfil: styled.div``
+  perfil: styled.div``,
+   areaHeader: styled.div`
+   display:flex;
+   flex-direction:column;
+     position: sticky;
+  z-index: 1000;
+  top:0;
+   `
 }
