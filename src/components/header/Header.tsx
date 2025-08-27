@@ -20,7 +20,6 @@ export const HeaderComponent = () => {
 
     const [loading, setLoading] = useState(false);
 
-    const count = 1;
     const navigate = useNavigate()
     const handleLoginClick = () => {
         setLoading(true);

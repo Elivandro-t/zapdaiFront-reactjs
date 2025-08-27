@@ -4,17 +4,8 @@ import { HeaderComponent } from "../../components/header/Header"
 import { MainComponent } from "../../components/MainComponent/MainComponet"
 import { BannerSlider } from "../../components/ProdutoCarrossel/produtoCarrossel";
 import Makert from "./marcketplace"
-import { useEffect, useState } from "react"
-import Api from "../../service/api"
-import api from "../../service/api";
-export const MarketPlace = () => {
-    const [drawerOpen, setDrawerOpen] = useState(false);
 
-    const toggleDrawer = (open: boolean) => (
-    ) => {
-        setDrawerOpen(open);
-    };
-     
+export const MarketPlace = () => {
     return (
         <Makert.container>
             <HeaderComponent />

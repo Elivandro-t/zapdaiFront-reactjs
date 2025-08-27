@@ -5,7 +5,6 @@ import {
     , Logo,
     Btn,
     Campos,
-    Or,
     Erros,
     Text,
     Foooter,
@@ -14,9 +13,7 @@ import {
 } from "./logwhas"
 import zapdaiLogo from "../../../assets/zapdai.png"
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoadingSecundary } from "../../../components/LoadingSecundary/LoadingSecundary";
 type FormData = {
     tel: string;
 };
@@ -27,14 +24,9 @@ export const LoginWhatsComponen = () => {
     const onSubmit = (data: FormData) => {
         console.log("Dados:", data);
     };
-
-
-    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const handleLoginClick = () => {
-        setLoading(true);
         setTimeout(() => {
-            setLoading(false);
             navigate("/");
         }, 1000); // 1 segundo de delay para "simular" carregamento
     };

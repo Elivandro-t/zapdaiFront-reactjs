@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import {LoadingRota, Section}  from "./loading"
 import { useNavigate } from "react-router-dom";
 export const LoadingR = ()=>{
-    const [ativo,setAtivo]  = useState(true);
+    const ativo = true;
     const nagivate = useNavigate();
 
     useEffect(()=>{
