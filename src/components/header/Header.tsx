@@ -24,12 +24,12 @@ export const HeaderComponent = () => {
     const navigate = useNavigate()
     const handleLoginClick = () => {
         setLoading(true);
-        const intval = setTimeout(() => {
+        const intval = setInterval(() => {
             navigate("/login");
             setLoading(false);
 
         }, 1000);
-        return () => clearTimeout(intval)
+        return () => clearInterval(intval)
     };
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -67,7 +67,7 @@ export const HeaderComponent = () => {
     };
     useEffect(()=>{
         handleleng()
-    },[item])
+    },[])
     return (
         <>
             <Header.areaHeader>
