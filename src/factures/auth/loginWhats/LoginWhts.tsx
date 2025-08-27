@@ -27,7 +27,7 @@ export const LoginWhatsComponen = () => {
     const navigate = useNavigate()
     const handleLoginClick = () => {
         setTimeout(() => {
-            navigate("/");
+            navigate("/marketPlace");
         }, 1000); // 1 segundo de delay para "simular" carregamento
     };
     return (
