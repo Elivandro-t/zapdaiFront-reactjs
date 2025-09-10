@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
-
+import save from "../../service/localStorage/service-localStorage"
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 export const PerfilComponet = ()=>{
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -16,7 +16,9 @@ export const PerfilComponet = ()=>{
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
+    function removeToken(){
+       save.logout()
+      }
    const handleCloseUserMenu = (setting:string) => {
     setAnchorElUser(null);
     switch (setting) {
@@ -30,7 +32,8 @@ export const PerfilComponet = ()=>{
       navigate("/dashboard");
       break;
     case "Logout":
-      navigate("/logout");
+      removeToken()
+      navigate("/");
       break;
     default:
       break;

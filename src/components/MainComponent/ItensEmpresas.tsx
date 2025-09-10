@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import imagem from "../../assets/empresasPR.png"
 
 type produtos = {
   title: string,
@@ -45,7 +45,7 @@ export const EmpresasItens = (produtos: produtos) => {
       {produtos.items.length > 0 && (
         <>
           {produtos.ativo ?
-            (<BtnIconEmpresa src={produtos.empresa?.avatar}></BtnIconEmpresa>) :
+            (<BtnIconEmpresa src={produtos.empresa?.avatar!=null? produtos.empresa?.avatar:imagem }></BtnIconEmpresa>) :
             (<Title>{produtos.title}</Title>)
 
 

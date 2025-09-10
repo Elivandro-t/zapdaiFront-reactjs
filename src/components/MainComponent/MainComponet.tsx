@@ -47,8 +47,8 @@ export const MainComponent = () => {
 
   return (
     <Main>
-      <ItensComponent title={"🔥Top 10 Mais Vendidos"} items={maisVendidos || []} ref={maisVendidosRef as any} ativo={false} ></ItensComponent>
-      <ItensComponent title={"⭐ Em Destaque"} items={emDestaque} ref={emDestaqueRef as any} ativo={false} ></ItensComponent>
+      <ItensComponent title={"🔥Top 10 Mais Vendidos"} destaque={"emDestaque"}   items={maisVendidos || []} ref={maisVendidosRef as any} ativo={false} ></ItensComponent>
+      <ItensComponent title={"⭐ Em Destaque"}  items={emDestaque} ref={emDestaqueRef as any} ativo={false} ></ItensComponent>
       {todosOsProdutos?.filter(Boolean).map((empresa) => {
         if (!empresaRefs.current[empresa.idEmpresa]) {
           empresaRefs.current[empresa.idEmpresa] = React.createRef<HTMLDivElement>() as any;

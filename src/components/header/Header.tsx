@@ -16,6 +16,9 @@ import { CarrinhoDeCompra } from "../carrinhodeCompra/carrinho";
 import { Drower } from "../drawer/drower";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { Logued } from "../../service/Logued"
+import salve from "../../service/localStorage/service-localStorage"
+
 export const HeaderComponent = () => {
 
     const [loading, setLoading] = useState(false);
@@ -23,12 +26,10 @@ export const HeaderComponent = () => {
     const navigate = useNavigate()
     const handleLoginClick = () => {
         setLoading(true);
-        const intval = setInterval(() => {
-            navigate("/login");
-            setLoading(false);
+        navigate("/login");
+        setLoading(false);
 
-        }, 1000);
-        return () => clearInterval(intval)
+
     };
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -44,6 +45,7 @@ export const HeaderComponent = () => {
     }
     useEffect(() => {
         hendleSearchApi()
+        handleleng()
     }, [])
     const [ativo, setAtivo] = useState(false)
     const hendleAtivoCarrinho = () => {
@@ -55,18 +57,16 @@ export const HeaderComponent = () => {
     const handleClick = () => {
         console.info('You clicked the Chip.');
     };
-    const [item,setItem] = useState<any[]>()
-    const handleleng= () => {
+    const [item, setItem] = useState<any[]>()
+    const handleleng = () => {
         const json = localStorage.getItem("carditem")
-        if(json!==null){
+        if (json !== null) {
             const data = JSON.parse(json);
             setItem(data)
         }
-        
+
     };
-    useEffect(()=>{
-        handleleng()
-    },[])
+  
     return (
         <>
             <Header.areaHeader>
@@ -77,40 +77,51 @@ export const HeaderComponent = () => {
                         <AddBusinessIcon />
                         Empresas
                     </Header.ButtomService>
+                     {Logued() && (
                     <Header.car onClick={() => hendleAtivoCarrinho()}>
                         <Badge badgeContent={item?.length} color="error">
                             <RemoveShoppingCartIcon sx={{ color: 'white' }} />
                         </Badge>
                     </Header.car>
-                    <Header.ButtomService onClick={handleLoginClick} >
-                        <LogoutIcon />
-                        Entrar
-                    </Header.ButtomService>
-                    <Header.ButtomService  >
-                        <PersonAddAltIcon />
-                        Cadastrar
-                    </Header.ButtomService>
-                    <Header.perfil>
-                        <PerfilComponet />
-                    </Header.perfil>
-                </Header.container>
-                <Header.categoriasItens>
-                   <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
-                    <MenuOpenRoundedIcon />
-                </Button>
-                <Stack direction="row" spacing={2}>
-                    {
-                        categorias?.flatMap(ItemsRow=>(
-                    <Chip
-                        label={ItemsRow.nome}
-                        variant="outlined"
-                        onClick={handleClick}
-                        icon={<img width={24} height={15} src={ItemsRow.icone}/>}
-                    />
-                        ))
+                     )}
+                    {!Logued() && (
+                        <>
+                            <Header.ButtomService onClick={handleLoginClick} >
+                                <LogoutIcon />
+                                Entrar
+                            </Header.ButtomService>
+                            <Header.ButtomService  >
+                                <PersonAddAltIcon />
+                                Cadastrar
+                            </Header.ButtomService>
+                        </>
+                    )}
+                    {Logued() && (
+                        <Header.perfil>
+                            <PerfilComponet />
+                        </Header.perfil>
+                    )
                     }
-                </Stack>
-                </Header.categoriasItens>
+                </Header.container>
+              
+                    <Header.categoriasItens>
+                        <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
+                            <MenuOpenRoundedIcon />
+                        </Button>
+                        <Stack direction="row" spacing={2}>
+                            {
+                                categorias?.flatMap(ItemsRow => (
+                                    <Chip
+                                        label={ItemsRow.nome}
+                                        variant="outlined"
+                                        onClick={handleClick}
+                                        icon={<img width={24} height={15} src={ItemsRow.icone} />}
+                                    />
+                                ))
+                            }
+                        </Stack>
+                    </Header.categoriasItens>
+              
                 <Drower drawerOpen={drawerOpen} toggleDrawer={toggleDrawer(false)} categorias={categorias || []} />
 
             </Header.areaHeader>

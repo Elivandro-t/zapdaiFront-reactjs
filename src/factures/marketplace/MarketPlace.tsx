@@ -9,9 +9,11 @@ export const MarketPlace = () => {
     return (
         <Makert.container>
             <HeaderComponent />
-             <BannerSlider ></BannerSlider>
+            <Makert.Container_int>
+            <BannerSlider ></BannerSlider>
             <MainComponent></MainComponent>
             <EmpresasParceirasComponent></EmpresasParceirasComponent>
+            </Makert.Container_int>
             <FootComponet></FootComponet>
         </Makert.container>
     )

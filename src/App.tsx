@@ -3,20 +3,25 @@ import { LoadingR } from "./factures/LoadingR";
 import { MarketPlace } from "./factures/marketplace/MarketPlace";
 import { LoginComponen } from "./factures/auth/login/Login";
 import { LoginWhatsComponen } from "./factures/auth/loginWhats/LoginWhts";
+import { ProtectedRoute } from "./service/ProtectedRoute";
+import { Empresa } from "./factures/empresa/empresa";
 const App = () => {
-
+   
   return (
     //  <LoadingR></LoadingR>
 
 
     <BrowserRouter>
       <Routes>
-        <Route index path="/" element={<Navigate to="/verify" replace />} />
-        <Route path="/marketPlace" element={<MarketPlace />} />
-        <Route  path="verify" element={<LoadingR />} />
+        <Route  path="/" element={<Navigate to="/verify" replace />} />
+        <Route index path="/marketPlace" 
+        element={
+            <MarketPlace key={Date.now()}/>        
+        } />
+        <Route index  path="verify" element={<LoadingR />} />
         <Route path="/login" element={<LoginComponen />} />
         <Route path="/login-whats" element={<LoginWhatsComponen />} />
-
+        <Route path="/empresa/:name" element={<Empresa />} />
       </Routes>
     </BrowserRouter>
   )

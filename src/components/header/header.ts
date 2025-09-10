@@ -7,7 +7,7 @@ export default {
     align-items:center;
     justify-content: space-between;
     font-family: 'Segoe UI', sans-serif;
-    padding:20px 35px;
+    padding:20px 30px;
     margin: 0%;
     grid-area: 20px;
    background: linear-gradient(135deg, #ff3c00 0%, #ff6a00 50%, #ff2e00 100%);
@@ -46,7 +46,7 @@ color: var(--cor-font);
     color: white;              /* opcional */
   }
     `,
-    car: styled.button` 
+  car: styled.button` 
   display:flex;
   align-items:center;
 background-color:transparent;
@@ -64,23 +64,21 @@ color: var(--cor-font);
     `,
   iconCar: styled.section``,
   perfil: styled.div``,
-   areaHeader: styled.div`
+  areaHeader: styled.div`
    display:flex;
    flex-direction:column;
      position: sticky;
   z-index: 1000;
   top:0;
    `,
-   categoriasItens:styled.div`
-   padding:20px  0;
+  categoriasItens: styled.div`
+   padding:10px  0;
    width: 100%;
    display: flex;
    align-items: center;
    gap: 10px;
    background-color:var(--cor-principal);
-   margin-bottom:10px;
    `
 }
 
 
- 

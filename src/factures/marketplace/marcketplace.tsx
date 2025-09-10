@@ -4,5 +4,8 @@ export default {
     container:styled.main`
     position: relative;
     background-color:var(--cor-principal);
-    `
+    `,
+     Container_int:styled.main`
+      padding:10px 26px;
+     `
 }

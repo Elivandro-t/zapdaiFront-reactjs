@@ -20,7 +20,9 @@ type produtos = {
   title: string,
   items: any[],
   ref: React.RefObject<HTMLDivElement>,
-  ativo: boolean
+  ativo: boolean,
+  destaque?: string;
+
 
 }
 export const ItensComponent = (produtos: produtos) => {
@@ -46,7 +48,7 @@ export const ItensComponent = (produtos: produtos) => {
     };
   
   return (
-    <Section>
+    <Section destaque={produtos.destaque}>
       {produtos.items.length == 0 && (
         <Box sx={{ width: 300 }}>
           <Skeleton variant="rectangular" width={210} height={118} />

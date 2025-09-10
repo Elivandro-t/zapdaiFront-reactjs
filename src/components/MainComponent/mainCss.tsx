@@ -1,14 +1,17 @@
 import styled from "styled-components";
-
+const coresDestaque: Record<string, string> = {
+  maisVendidos: "rgba(255, 92, 43, 0.1",
+  emDestaque: "linear-gradient(135deg,#ffe5b4,#ffc76a)",
+};
 export const Main = styled.div`
-  margin-top: 80px;
-  padding: 20px 40px;
 `;
 
-export const Section = styled.section`
+export const Section = styled.section<{ destaque?: string }>`
 position:relative;
   margin-bottom: 40px;
- background-color: rgba(255, 92, 43, 0.1); /* vermelho suave transparente */
+   background: ${({ destaque }) => destaque ? coresDestaque[destaque] : "inherit"};
+
+ /* background-color: rgba(255, 92, 43, 0.1);  */
     padding: 20px;
     border-radius: 10px;
 `;

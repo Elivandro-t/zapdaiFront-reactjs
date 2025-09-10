@@ -61,7 +61,8 @@ const NextArrow = ({ onClick }: any) => (
   };
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "1275px", margin: "0 auto",position: "relative"  }}>
+    <Box sx={{ width: "100%", padding:"10px 0;"
+, maxWidth: "100%", margin: "0 auto",position: "relative"  }}>
       <Slider {...settings}>
         {banners.map((banner) => (
           <Box
