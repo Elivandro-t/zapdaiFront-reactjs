@@ -48,7 +48,6 @@ export const EmpresasItens = (produtos: produtos) => {
             (<BtnIconEmpresa src={produtos.empresa?.avatar!=null? produtos.empresa?.avatar:imagem }></BtnIconEmpresa>) :
             (<Title>{produtos.title}</Title>)
 
-
           }
           <ItemsRowWrapper>
             <NavButton left onClick={() => scrollRow(produtos.ref, "left")}>

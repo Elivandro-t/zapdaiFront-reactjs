@@ -1,5 +1,7 @@
 import axios from "axios"
 const base = "https://api.zapdai.com";
+import { notify } from "./snackbarService";
+
 const buscaApi = async(endpoint:string)=>{
     try {
     const response = await axios.get(`${base}${endpoint}`);
@@ -51,6 +53,29 @@ const login = async(endpoint:string,body:any)=>{
   return response.data;
 }
 
+axios.interceptors.response.use(response=>{
+    return response;
+  
+},(error)=>{
+  if(error.response){
+    const status = error.response.status;
+    const data = error.response.data;
+    switch(status){
+      case 400:
+       console.log("status 400"+data)
+        break
+      case 401:
+         const msg = data.message || "Ocorreu um erro";
+        notify(msg)
+        console.log("status 401"+data.message)
+        break
+      case 403:
+        console.log("status 403"+data)
+        break
+    }
+  }
+})
+
 const api = {
     buscaItens:async ()=>{
         const json = await buscaApi("/zapdai/v1/produtos/maisVendidos");
@@ -70,4 +95,8 @@ const api = {
       return json;
     }
 }
+
+
+
+
 export default api;
