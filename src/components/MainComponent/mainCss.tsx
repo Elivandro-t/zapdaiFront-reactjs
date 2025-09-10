@@ -1,15 +1,14 @@
 import styled from "styled-components";
 const coresDestaque: Record<string, string> = {
-  maisVendidos: "rgba(255, 92, 43, 0.1",
+  vendidos: "rgba(255, 92, 43, 0.1)",
   emDestaque: "linear-gradient(135deg,#ffe5b4,#ffc76a)",
 };
-export const Main = styled.div`
-`;
+export const Main = styled.div``;
 
 export const Section = styled.section<{ destaque?: string }>`
 position:relative;
   margin-bottom: 40px;
-   background: ${({ destaque }) => destaque ? coresDestaque[destaque] : "inherit"};
+   background: ${({ destaque }) => destaque ? coresDestaque[destaque] : "rgba(255, 92, 43, 0.1)"};
 
  /* background-color: rgba(255, 92, 43, 0.1);  */
     padding: 20px;

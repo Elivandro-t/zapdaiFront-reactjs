@@ -3,21 +3,21 @@ import { styled } from "styled-components";
 export default {
     Container: styled.div`
     box-sizing: border-box;
-     padding: 10px 40px;
+     padding: 10px 10px;
     `,
     Titulo: styled.div`
     `,
     MainArea: styled.div`
     display: grid;
     padding: 20px 0;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     `,
     H1: styled.h1`
     font-size: 24px;
     `,
     item: styled.div`
-    width:80%;
+    width:100%;
     border-radius:10px;
     display: flex;
     flex-direction: column;
@@ -25,6 +25,8 @@ export default {
       transition: transform 0.1s ease; 
     padding: 10px;
     cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* sombra maior no hover */
+
     &:hover{
         transform: scale(1.05); /* aumenta 5% */
   transition: transform 0.3s ease; 

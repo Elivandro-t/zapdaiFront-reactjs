@@ -6,6 +6,6 @@ export default {
     background-color:var(--cor-principal);
     `,
      Container_int:styled.main`
-      padding:10px 26px;
+      padding:0 26px;
      `
 }

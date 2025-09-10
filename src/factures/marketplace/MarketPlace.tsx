@@ -10,9 +10,7 @@ export const MarketPlace = () => {
         <Makert.container>
             <HeaderComponent />
             <Makert.Container_int>
-            <BannerSlider ></BannerSlider>
-            <MainComponent></MainComponent>
-            <EmpresasParceirasComponent></EmpresasParceirasComponent>
+                <MainComponent></MainComponent>
             </Makert.Container_int>
             <FootComponet></FootComponet>
         </Makert.container>

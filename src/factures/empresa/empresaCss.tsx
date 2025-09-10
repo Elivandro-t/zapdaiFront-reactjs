@@ -21,6 +21,7 @@ export default {
      align-items:center;
      justify-content:space-between;
      padding: 0 30px;
+     gap: 5px;
      width: 100%;
      height: 100%;
     `,
@@ -35,7 +36,9 @@ export default {
      `,
      Logo:styled.h1`
       color: #FFF;
-      font-size: 42px;
+      font-size: 32px;
+      margin: 0;
+      padding: 0;
       font-weight:800;
       font-family: Arial, Helvetica, sans-serif;
      `,
@@ -51,6 +54,7 @@ export default {
      `,
      Banner_area:styled.div`
      display: flex;
+     padding: 2px 12px;
 
      `,
      imagemITens:styled.section`
@@ -62,6 +66,14 @@ export default {
       max-width: 600px;
       width: 100%;
       padding:0 10px;
+
+     `,
+     Input:styled.input`
+      height: 30px;
+     width:50%;
+     border-radius: 7px;
+     border: 0;
+     padding:5px;
 
      `
 }

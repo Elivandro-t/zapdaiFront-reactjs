@@ -6,6 +6,8 @@ import {
 import { ItensComponent } from "./ItensProdutosComponent";
 import { EmpresasItens } from "./ItensEmpresas";
 import React from "react";
+import { BannerSlider } from "../ProdutoCarrossel/produtoCarrossel";
+import { EmpresasParceirasComponent } from "../empresasParceiras/empresasparceiras";
 
 
 export const MainComponent = () => {
@@ -47,8 +49,9 @@ export const MainComponent = () => {
 
   return (
     <Main>
+      <BannerSlider ></BannerSlider>
       <ItensComponent title={"🔥Top 10 Mais Vendidos"} destaque={"emDestaque"}   items={maisVendidos || []} ref={maisVendidosRef as any} ativo={false} ></ItensComponent>
-      <ItensComponent title={"⭐ Em Destaque"}  items={emDestaque} ref={emDestaqueRef as any} ativo={false} ></ItensComponent>
+      <ItensComponent title={"⭐ Em Destaque"} destaque={"vendidos"} items={emDestaque} ref={emDestaqueRef as any} ativo={false} ></ItensComponent>
       {todosOsProdutos?.filter(Boolean).map((empresa) => {
         if (!empresaRefs.current[empresa.idEmpresa]) {
           empresaRefs.current[empresa.idEmpresa] = React.createRef<HTMLDivElement>() as any;
@@ -62,6 +65,7 @@ export const MainComponent = () => {
             ativo={true} empresa={empresa}          />
         );
       })}
+        <EmpresasParceirasComponent></EmpresasParceirasComponent>
     </Main>
   );
 };

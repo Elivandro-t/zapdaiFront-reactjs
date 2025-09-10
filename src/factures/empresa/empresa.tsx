@@ -12,6 +12,7 @@ export const Empresa = ()=>{
             <Template.HeaderComponet>
               <Template.AreaHeader>
                 <Template.Logo>{name}</Template.Logo>
+                <Template.Input placeholder="Buscar.."></Template.Input>
                 <Template.LogoImagem imgem={"https://api.zapdai.com/zapdai/v1/empresas/logo_empresa/Ana%20Barbara%20Silva%20da%20Silva_1000_F_458152314_YNeAwbq1x7drSjWDRPJlwDObp1YRhdD9.jpg"}></Template.LogoImagem>
               </Template.AreaHeader>
               <Template.Imagem imgem={"https://api.zapdai.com/zapdai/v1/empresas/logo_empresa/Ana%20Barbara%20Silva%20da%20Silva_1000_F_458152314_YNeAwbq1x7drSjWDRPJlwDObp1YRhdD9.jpg"}></Template.Imagem>
