@@ -9,8 +9,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
 import save from "../../service/localStorage/service-localStorage"
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { contextProduto } from "../../reducer/ProdutoProvaider/providerProdutos";
+import { contextProvider } from "../../reducer/userProvider/userProvider";
+import { useContext } from "react";
+import { LoadingSecundary } from "../LoadingSecundary/LoadingSecundary";
+const settings = ['Meus Pedidos', 'Account', 'Dashboard', 'Logout'];
+
 export const PerfilComponet = ()=>{
+  const ct = useContext(contextProduto)
+  const usuario = useContext(contextProvider)
+  const [loadign,setLoading]=React.useState(false)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
    const navigate = useNavigate()
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -22,8 +30,11 @@ export const PerfilComponet = ()=>{
    const handleCloseUserMenu = (setting:string) => {
     setAnchorElUser(null);
     switch (setting) {
-    case "Profile":
-      navigate("/profile");
+    case "Meus Pedidos":
+      setLoading(true)
+      setTimeout(()=>{
+         navigate("/meus-pedidos");
+      },1000)
       break;
     case "Account":
       navigate("/account");
@@ -34,6 +45,7 @@ export const PerfilComponet = ()=>{
     case "Logout":
       removeToken()
       navigate("/");
+      ct?.removeItemLogado()
       break;
     default:
       break;
@@ -45,7 +57,7 @@ export const PerfilComponet = ()=>{
         <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Elivandro" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={usuario?.username} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -71,6 +83,9 @@ export const PerfilComponet = ()=>{
               ))}
             </Menu>
           </Box>
+          {loadign&&
+          <LoadingSecundary></LoadingSecundary>
+          }
        </Perfil.container>
     );
 }

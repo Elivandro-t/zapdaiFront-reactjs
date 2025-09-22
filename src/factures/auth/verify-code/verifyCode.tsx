@@ -34,18 +34,23 @@ padding: 20px 30px;
  
 gap: 20px;
   @media screen and (min-width:430px){
-      width: 420px;
+      width: 490px;
       background-color: #FFF;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      padding: 50px 30px;
-      height: 350px;
+      padding: 40px 30px;
 
 
 
   }
 
 `;
+export const Titulo = styled.small`
+width: 100%;
+color: green;
+padding: 5px 0;
 
+
+`;
 
 export const Logo = styled.img`
 width: 100px;
@@ -55,23 +60,29 @@ cursor: pointer;
 
 
 `;
-export const Titulo = styled.small`
-width: 100%;
-color: green;
-top: -15px;
-position: absolute;
-
-
-`;
 export const Btn = styled.button`
 margin: 5px 0;
 padding: 10px;
 width: 100%;
 height: 35px;
 border:1px solid #d6d6d6;
-background-color:var(--cor);
+background-color:transparent;
 border-radius: 5px;
-cursor: pointer;
+&:active {
+    transform: scale(0.95);
+    font-size: 12px;
+
+  }
+
+
+
+`;
+export const Google = styled.div`
+margin: 5px 0;
+width: 100%;
+height: 35px;
+background-color:transparent;
+border-radius: 5px;
 &:active {
     transform: scale(0.95);
     font-size: 12px;
@@ -86,9 +97,7 @@ export const Campos = styled.input.withConfig({
 })<CamposProps>`
 width: 100%;
 height: 42px;
-border:1px solid #d6d6d6;
 background-color:transparent;
-border-radius: 5px;
   border: 1px solid ${({ hasError }) => (hasError ? '#ff4d4f' : '#ccc')};
 &:focus {
     outline: none;
@@ -99,33 +108,28 @@ padding:5px;
 
 `;
 export const Or = styled.div`
-&::before,::after{
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #ccc;
-}
+
+
 
 `;
-export const BtnLogin = styled.button`
-margin: 5px 0;
-width: 100%;
-height: 35px;
-border:1px solid #d6d6d6;
-background-color:#007BFF;
+export const LinkText = styled.a`
+color:#888;
+text-decoration:none;
 border-radius: 5px;
 color: #DDD;
-font-size: 14px;
+text-align:center;
+font-size: 12px;
 font-weight: bold;
     transition: background-color 0.3s ease;
+cursor: pointer;
 
 &:active {
-    transform: scale(0.95);
     font-size: 12px;
+    transform:scale(0.97);
 
   }
   &:hover {
-    background-color: #0056b3;
-    color: white; 
+    color: #0056b3;
   }
 
 `;
@@ -140,21 +144,26 @@ color: blue;
 font-size: 18px;
 font-family: Arial, Helvetica, sans-serif;
 font-weight:600;
-margin-bottom:15px;
 
 `;
-export const FormSub = styled.form`
-width: 100%;
+export const FormSub = styled.div`
 display: flex;
 flex-direction: column;
-position: relative;
+align-items: center;
 gap: 20px;
 
 `;
 export const Erros = styled.div`
 position: absolute;
 color:#ff4d4f;
- color: #ff4d4f;
+  font-size: 13px;
+  margin: 0 0 10px;
+ 
+
+`;
+export const Loading = styled.article`
+position: absolute;
+color:#ff4d4f;
   font-size: 13px;
   margin: 0 0 10px;
  
@@ -169,11 +178,19 @@ bottom: 0;
 
 
 `
-export const EsquceuSenha = styled.div`
-margin: 5px 0;
+export const Divid = styled.div`
+display:flex;
+ align-items: center;
+ gap: 10px;
+ text-align: center;
+  
+`
+export const Cod = styled.div`
+margin: 4px 0;
+font-size: 14px;
 display: flex;
 align-items: center;
-justify-content: end;
+font-weight: bold;
 
 
 `

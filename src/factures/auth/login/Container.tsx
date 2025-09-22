@@ -3,7 +3,6 @@ interface CamposProps {
   hasError?: boolean;
 }
 
-
 export const Container = styled.section`
 display: flex;
 position: relative;
@@ -21,6 +20,12 @@ justify-content: center;
 
 
   }
+`;
+export const Img = styled.img` 
+height: 24px;
+margin: 0;
+margin-right: 6rem;
+
 `;
 
 export const Form = styled.div`
@@ -55,16 +60,23 @@ cursor: pointer;
 
 `;
 export const Btn = styled.button`
+display: flex;
+align-items: center;
 margin: 5px 0;
-padding: 10px;
+padding: 10px 0;
 width: 100%;
 height: 35px;
 border:1px solid #d6d6d6;
 background-color:transparent;
 border-radius: 5px;
+cursor: pointer;
 &:active {
     transform: scale(0.95);
     font-size: 12px;
+
+  }
+  &:hover{
+   background-color: #e8eef3;
 
   }
 

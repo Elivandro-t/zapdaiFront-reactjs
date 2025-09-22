@@ -11,15 +11,16 @@ import api from "../../service/api"
 import Header from "./header"
 import { useNavigate } from "react-router-dom";
 import { LoadingSecundary } from "../LoadingSecundary/LoadingSecundary";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CarrinhoDeCompra } from "../carrinhodeCompra/carrinho";
 import { Drower } from "../drawer/drower";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Logued } from "../../service/Logued"
-import salve from "../../service/localStorage/service-localStorage"
+import { contextProduto } from "../../reducer/ProdutoProvaider/providerProdutos";
 
 export const HeaderComponent = () => {
+      const {carrinho } = useContext(contextProduto) as any
 
     const [loading, setLoading] = useState(false);
 
@@ -43,9 +44,9 @@ export const HeaderComponent = () => {
         const response = await api.categorias()
         setCategoris(response.categorias);
     }
+
     useEffect(() => {
         hendleSearchApi()
-        handleleng()
     }, [])
     const [ativo, setAtivo] = useState(false)
     const hendleAtivoCarrinho = () => {
@@ -58,28 +59,31 @@ export const HeaderComponent = () => {
         console.info('You clicked the Chip.');
     };
     const [item, setItem] = useState<any[]>()
-    const handleleng = () => {
-        const json = localStorage.getItem("carditem")
-        if (json !== null) {
-            const data = JSON.parse(json);
-            setItem(data)
-        }
 
-    };
+    const hendleHome = ()=>{
+        navigate("/marketPlace")
+    }
+
+    const navegarMaket = ()=>{
+        setLoading(true)
+        setTimeout(()=>{
+            navigate("/melhores-planos",{ replace: true, state: { refresh: Date.now() } })
+        },2000)
+    }
   
     return (
         <>
             <Header.areaHeader>
                 <Header.container>
-                    <Header.logo src={logoWhite} />
+                    <Header.logo src={logoWhite} onClick={()=>hendleHome()}/>
                     <Header.busca placeholder="Buscar..." />
-                    <Header.ButtomService  >
+                    <Header.ButtomService onClick={navegarMaket} >
                         <AddBusinessIcon />
                         Empresas
                     </Header.ButtomService>
                      {Logued() && (
                     <Header.car onClick={() => hendleAtivoCarrinho()}>
-                        <Badge badgeContent={item?.length} color="error">
+                        <Badge badgeContent={carrinho.length} color="error">
                             <RemoveShoppingCartIcon sx={{ color: 'white' }} />
                         </Badge>
                     </Header.car>

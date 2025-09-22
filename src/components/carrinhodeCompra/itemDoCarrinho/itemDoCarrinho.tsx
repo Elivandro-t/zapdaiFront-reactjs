@@ -1,7 +1,8 @@
+import type { carrinhoType } from "../../../types/carrinhoType"
 import type { Itens } from "../../../types/types"
 import Template from "./itemDoCarrinhoCss"
 type Props = {
-    data:Itens[]
+    data:carrinhoType[]
 }
 export const ItemDoCarrinho = ({data}:Props)=>{
     return(
@@ -11,18 +12,18 @@ export const ItemDoCarrinho = ({data}:Props)=>{
     )}
       {data.map((item, index) => (
         <Template.ContainerTop key={index}>
-          <Template.Imagem src={item.imgUrl || ""} alt={item.productName} />
+          <Template.Imagem src={item?.imageUrl || ""} alt={item.nomeProduto} />
           <Template.ContainerInt>
-            <Template.Titulo>{item.productName}</Template.Titulo>
+            <Template.Titulo>{item.nomeProduto}</Template.Titulo>
             <Template.Price>R$ {item.price.toFixed(2)}</Template.Price>
 
             <Template.ContainerBTN>
               <Template.priceSegundary>
-                R$ {(item.price * item.amountQTD).toFixed(2)}
+                R$ {(item.price * item.quantidade).toFixed(2)}
               </Template.priceSegundary>
 
               <Template.henderBtn>-</Template.henderBtn>
-              <Template.input value={item.amountQTD} readOnly />
+              <Template.input value={item.quantidade} readOnly />
               <Template.henderBtn>+</Template.henderBtn>
             </Template.ContainerBTN>
           </Template.ContainerInt>

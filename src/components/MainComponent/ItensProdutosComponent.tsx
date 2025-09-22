@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { SimpleDialog } from "../detalhesProdutos/detalhesProdutos";
+import { useNavigate } from "react-router-dom";
 
 
 type produtos = {
@@ -35,12 +35,15 @@ export const ItensComponent = (produtos: produtos) => {
       });
     }
   };
+  const navigate = useNavigate()
    const [open, setOpen] = React.useState(false);
    const [lista, setLista] = React.useState<any>(null);
   
-    const handleClickOpen = (item:any) => {
-      setLista(item)
-      setOpen(true);
+    const handleClickOpen = (id:any) => {
+      // setLista(item)
+      // setOpen(true);
+       const params = new URLSearchParams({ shared:id});
+      navigate(`/marketPlace/produtos?${params}`)
     };
   
     const handleClose = () => {
@@ -70,7 +73,7 @@ export const ItensComponent = (produtos: produtos) => {
             </NavButton>
             <ItemsRow ref={produtos.ref}>
               {produtos.items.map((item) => (
-                <Card key={item.idProduto} onClick={()=>handleClickOpen(item)}>
+                <Card key={item.idProduto} onClick={()=>handleClickOpen(item.idProduto)}>
                   <Image src={item.imgProduct} alt={item.nome} />
                   <h3>{item.nome}</h3>
                   <p>{item.price}</p>
@@ -84,7 +87,7 @@ export const ItensComponent = (produtos: produtos) => {
           </ItemsRowWrapper>
         </>
       )}
-      <SimpleDialog open={open} selectedValue={lista} onClose={ handleClose}></SimpleDialog>
+      {/* <SimpleDialog open={open} selectedValue={lista} onClose={ handleClose}></SimpleDialog> */}
     </Section>
   )
 }

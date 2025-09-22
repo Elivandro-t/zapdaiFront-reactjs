@@ -10,6 +10,7 @@ import {
     Erros,
     Text,
     Foooter,
+    Img,
     Select,
     EsquceuSenha,
     Google
@@ -95,7 +96,10 @@ const senhaRef = useRef<HTMLInputElement>(null);
             <Form>
                 <Logo src={zapdaiLogo} onClick={handleMarckClick} />
                 <Text>Olá, Seja bem-vindo</Text>
-                <Btn onClick={handleLoginClick}>Entrar com Whatsapp</Btn>
+                <Btn onClick={handleLoginClick}>
+                    <Img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="50"/>
+
+                    Entrar com Whatsapp</Btn>
                 <Google id="googleSignInDiv"></Google>
                 <Or>OR</Or>
                 <FormSub onSubmit={handleSubmit(onSubmit)}>

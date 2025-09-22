@@ -14,6 +14,7 @@ import Skeleton from '@mui/material/Skeleton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import imagem from "../../assets/empresasPR.png"
+import { useNavigate } from "react-router-dom";
 
 type produtos = {
   title: string,
@@ -33,6 +34,13 @@ export const EmpresasItens = (produtos: produtos) => {
       });
     }
   };
+  const navigate = useNavigate()
+   const handleClickOpen = (id:any) => {
+      // setLista(item)
+      // setOpen(true);
+       const params = new URLSearchParams({ shared:id});
+      navigate(`/marketPlace/produtos?${params}`)
+    };
   return (
     <Section>
       {produtos.items.length == 0 && (
@@ -55,7 +63,7 @@ export const EmpresasItens = (produtos: produtos) => {
             </NavButton>
             <ItemsRow ref={produtos.ref}>
               {produtos.items.map((item) => (
-                <Card key={item.idProduto}>
+                <Card key={item.idProduto} onClick={()=>handleClickOpen(item.idProduto)}>
                   <Image src={item.imgUrl} alt={item.productName} />
                   <h3>{item.productName}</h3>
                   <p>{item.price}</p>

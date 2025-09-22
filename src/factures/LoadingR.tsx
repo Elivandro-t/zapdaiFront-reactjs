@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LoadingRota, Section } from "./loading"
 import { useNavigate } from "react-router-dom";
 import { Logued } from "../service/Logued"
@@ -6,9 +6,10 @@ export const LoadingR = () => {
     const isLogged = Logued()
     const navigate = useNavigate();
     const validationUser = () => {
-        console.log(isLogged)
-            if (isLogged || !isLogged) {
-            navigate("/marketPlace",{ replace: true, state: { refresh: Date.now() } });
+        const redirect =sessionStorage.getItem("redirectAfterLogin") || "/marketPlace";
+               sessionStorage.removeItem("redirectAfterLogin");
+            if ( isLogged || !isLogged) {
+            navigate(redirect,{ replace: true, state: { refresh: Date.now() } });
             }
         // } else {
         //       console.log("logued "+isLogged)
