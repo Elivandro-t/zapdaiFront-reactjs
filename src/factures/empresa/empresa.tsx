@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { BannerSlider } from "../../components/ProdutoCarrossel/produtoCarrossel"
 import Template from "./empresaCss"
 import { ItensComponent } from "../../components/MainComponent/ItensProdutosComponent";
@@ -25,7 +25,7 @@ export const Empresa = ()=>{
                         <BannerSlider></BannerSlider>
                 </Template.BannerCarrossel>
              </Template.Banner_area>
-             <ItensComponent title={""} items={[]} ref={emDestaqueRef} ativo={false}></ItensComponent>
+             <ItensComponent title={""} items={[]} ref={emDestaqueRef as any} ativo={false}></ItensComponent>
           </Template.Container>
     )
 }

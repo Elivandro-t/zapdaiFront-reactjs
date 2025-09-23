@@ -15,7 +15,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 
-
 type produtos = {
   title: string,
   items: any[],
@@ -35,21 +34,11 @@ export const ItensComponent = (produtos: produtos) => {
       });
     }
   };
-  const navigate = useNavigate()
-   const [open, setOpen] = React.useState(false);
-   const [lista, setLista] = React.useState<any>(null);
-  
+  const navigate = useNavigate()  
     const handleClickOpen = (id:any) => {
-      // setLista(item)
-      // setOpen(true);
-       const params = new URLSearchParams({ shared:id});
-      navigate(`/marketPlace/produtos?${params}`)
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
+    const params = new URLSearchParams({ shared:id});
+    navigate(`/marketPlace/produtos?${params}`)
+    };  
   return (
     <Section destaque={produtos.destaque}>
       {produtos.items.length == 0 && (

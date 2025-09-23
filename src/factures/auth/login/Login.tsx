@@ -17,7 +17,7 @@ import {
 } from "./Container"
 import zapdaiLogo from "../../../assets/zapdai.png"
 import { useForm } from "react-hook-form";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import salve from "../../../service/localStorage/service-localStorage"
 import Api from "../../../service/api"
@@ -80,8 +80,6 @@ export const LoginComponen = () => {
         console.log("Encoded JWT ID token: ", response.credential);
     }
 const senhaRef = useRef<HTMLInputElement>(null);
-    const emailRef = useRef<HTMLInputElement>(null);
-
     const focus = (
         event: React.KeyboardEvent<HTMLInputElement>,
         nextRef?: React.RefObject<HTMLInputElement|null>

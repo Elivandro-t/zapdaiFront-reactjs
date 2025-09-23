@@ -50,7 +50,7 @@ const ZapDaiMarket: React.FC = () => {
       <Template.Section>
         <Template.SectionTitle>Empresas Parceiras</Template.SectionTitle>
         <Template.PartnersGrid>
-          {partners.map((p, i) => (
+          {partners.map((p) => (
             <Template.PartnerCard >
               <img src={p.logo} alt={p.name} />
             </Template.PartnerCard>

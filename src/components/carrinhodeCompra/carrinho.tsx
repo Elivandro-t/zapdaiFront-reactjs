@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./carrinhoCss"
 import CloseRoundedIcon from '@mui/icons-material/Close';
 import { ItemDoCarrinho } from "./itemDoCarrinho/itemDoCarrinho";
 import type { carrinhoType } from "../../types/carrinhoType";
-import { contextProduto } from "../../reducer/ProdutoProvaider/providerProdutos";
-type ativaCar = {
+ type ativaCar = {
   hendle: () => void
 }
 export const CarrinhoDeCompra = ({ hendle }: ativaCar) => {

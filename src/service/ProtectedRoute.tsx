@@ -1,4 +1,4 @@
-import { useContext, type JSX } from "react";
+import { type JSX } from "react";
 import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }: { children: JSX.Element }) => {

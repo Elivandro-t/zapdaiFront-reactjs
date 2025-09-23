@@ -1,11 +1,12 @@
 
-import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import Template from "./form"
 export type CheckoutCustomRef = {
   submitForm: () => void;
 };
-const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
+const CheckoutCustom = forwardRef<CheckoutCustomRef>((props:any, ref) => {
   const pagar = (window as any);
+   console.log(...props)
   const formRef = useRef<HTMLFormElement>(null);
   const script = document.createElement("script");
 
@@ -59,6 +60,13 @@ const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
         data-pagarmecheckout-element="number"
         placeholder="Número do cartão"
         required
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
+            if (value.length >= 16) {
+              value = value.slice(0, 16)
+            }
+            e.target.value = value;
+          }}
       />
       <Template.campos
          id="holder-name"
@@ -90,6 +98,13 @@ const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
           data-pagarmecheckout-element="cvv"
           placeholder="CVV"
           required
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
+            if (value.length >= 2) {
+              value = value.slice(0, 4)
+            }
+            e.target.value = value;
+          }}
         />
         <Template.campos2
           type="text"
@@ -97,6 +112,13 @@ const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
           data-pagarmecheckout-element="exp_month"
           placeholder="Mês"
           required
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
+            if (value.length >= 2) {
+              value = value.slice(0, 2)
+            }
+            e.target.value = value;
+          }}
         />
         <Template.campos2
           type="text"
@@ -107,7 +129,7 @@ const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
             if (value.length >= 2) {
-              value = value.slice(0, 2) + '-' + value.slice(2, 4); // transforma em MM-YY
+              value = value.slice(0, 2) + value.slice(2, 4); // transforma em MM-YY
             }
             e.target.value = value;
           }}

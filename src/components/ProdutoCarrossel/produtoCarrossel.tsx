@@ -2,16 +2,10 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./index.css"
-const banners = [
-  { id: 1, text: "BANNER 1", bg: "#ccc" },
-  { id: 2, text: "BANNER 2", bg: "#e0e0e0" },
-  { id: 3, text: "BANNER 3", bg: "#dcdcdc" },
-  { id: 4, text: "BANNER 4", bg: "#f0f0f0" },
-];
 import Api from "../../service/api"
 
 export const BannerSlider: React.FC = () => {

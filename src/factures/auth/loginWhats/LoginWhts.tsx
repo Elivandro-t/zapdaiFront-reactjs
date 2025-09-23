@@ -5,7 +5,6 @@ import {
     , Logo,
     Btn,
     Campos,
-    Or,
     Erros,
     Text,
     Foooter,

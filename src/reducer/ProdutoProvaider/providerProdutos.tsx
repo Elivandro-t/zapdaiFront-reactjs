@@ -37,7 +37,7 @@ export const ProvaiderProdutos = ({ children }: children) => {
         setCarrinho((prev) => prev.filter((p) => p.id !== id));
     }
      function removeItemLogado() {
-        setCarrinho((prev)=>[]);
+        setCarrinho(()=>[]);
         localStorage.removeItem("carrinho");
     }
     

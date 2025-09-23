@@ -1,6 +1,4 @@
 import Template from "./detalhesProdutosCss"
-import Dialog from '@mui/material/Dialog';
-
 
 export interface SimpleDialogProps {
   open: boolean;

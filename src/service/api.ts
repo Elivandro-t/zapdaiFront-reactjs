@@ -11,10 +11,8 @@ const rotasPublicas= ["/categorias/lista",
   ];
 const base = "https://api.zapdai.com";
 import { notify } from "./snackbarService";
-import { useParams } from "react-router-dom";
-
-const buscaApi = async(endpoint:string)=>{
-    try {
+async function buscaApi(endpoint: string) {
+  try {
     const response = await axios.get(`${base}${endpoint}`);
     return response.data;
   } catch (error) {
@@ -37,10 +35,7 @@ const categorias = async(endpoint:string)=>{
   const response = await axios.get(base+endpoint);
   return response.data;
 }
-interface LoginRequest {
-  email: string;
-  password: string;
-}
+
 axios.interceptors.request.use((config:any)=>{
        const token = localStorage.getItem("acessToken")
         const urlPath = new URL(config.url, window.location.origin).pathname;

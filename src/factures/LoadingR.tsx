@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect } from "react"
 import { LoadingRota, Section } from "./loading"
 import { useNavigate } from "react-router-dom";
 import { Logued } from "../service/Logued"

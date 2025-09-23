@@ -47,7 +47,7 @@ export const MeusPedidos = () => {
                     {lista.length<=0 &&(
                        <>Carregando Pedidos...</>
                     )}
-                    {lista.map((item, index) => (
+                    {lista.map((item) => (
                         <div key={item.id}>
                             <Template.dataPedido >
                                     {new Date(item.dataDeCriacao).toLocaleDateString("pt-BR", {

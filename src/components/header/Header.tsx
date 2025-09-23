@@ -20,7 +20,7 @@ import { Logued } from "../../service/Logued"
 import { contextProduto } from "../../reducer/ProdutoProvaider/providerProdutos";
 
 export const HeaderComponent = () => {
-      const {carrinho } = useContext(contextProduto) as any
+    const { carrinho } = useContext(contextProduto) as any
 
     const [loading, setLoading] = useState(false);
 
@@ -58,36 +58,34 @@ export const HeaderComponent = () => {
     const handleClick = () => {
         console.info('You clicked the Chip.');
     };
-    const [item, setItem] = useState<any[]>()
-
-    const hendleHome = ()=>{
+    const hendleHome = () => {
         navigate("/marketPlace")
     }
 
-    const navegarMaket = ()=>{
+    const navegarMaket = () => {
         setLoading(true)
-        setTimeout(()=>{
-            navigate("/melhores-planos",{ replace: true, state: { refresh: Date.now() } })
-        },2000)
+        setTimeout(() => {
+            navigate("/melhores-planos", { replace: true, state: { refresh: Date.now() } })
+        }, 2000)
     }
-  
+
     return (
         <>
             <Header.areaHeader>
                 <Header.container>
-                    <Header.logo src={logoWhite} onClick={()=>hendleHome()}/>
+                    <Header.logo src={logoWhite} onClick={() => hendleHome()} />
                     <Header.busca placeholder="Buscar..." />
                     <Header.ButtomService onClick={navegarMaket} >
                         <AddBusinessIcon />
                         Empresas
                     </Header.ButtomService>
-                     {Logued() && (
-                    <Header.car onClick={() => hendleAtivoCarrinho()}>
-                        <Badge badgeContent={carrinho.length} color="error">
-                            <RemoveShoppingCartIcon sx={{ color: 'white' }} />
-                        </Badge>
-                    </Header.car>
-                     )}
+                    {Logued() && (
+                        <Header.car onClick={() => hendleAtivoCarrinho()}>
+                            <Badge badgeContent={carrinho.length} color="error">
+                                <RemoveShoppingCartIcon sx={{ color: 'white' }} />
+                            </Badge>
+                        </Header.car>
+                    )}
                     {!Logued() && (
                         <>
                             <Header.ButtomService onClick={handleLoginClick} >
@@ -107,25 +105,25 @@ export const HeaderComponent = () => {
                     )
                     }
                 </Header.container>
-              
-                    <Header.categoriasItens>
-                        <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
-                            <MenuOpenRoundedIcon />
-                        </Button>
-                        <Stack direction="row" spacing={2}>
-                            {
-                                categorias?.flatMap(ItemsRow => (
-                                    <Chip
-                                        label={ItemsRow.nome}
-                                        variant="outlined"
-                                        onClick={handleClick}
-                                        icon={<img width={24} height={15} src={ItemsRow.icone} />}
-                                    />
-                                ))
-                            }
-                        </Stack>
-                    </Header.categoriasItens>
-              
+
+                <Header.categoriasItens>
+                    <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
+                        <MenuOpenRoundedIcon />
+                    </Button>
+                    <Stack direction="row" spacing={2}>
+                        {
+                            categorias?.flatMap(ItemsRow => (
+                                <Chip
+                                    label={ItemsRow.nome}
+                                    variant="outlined"
+                                    onClick={handleClick}
+                                    icon={<img width={24} height={15} src={ItemsRow.icone} />}
+                                />
+                            ))
+                        }
+                    </Stack>
+                </Header.categoriasItens>
+
                 <Drower drawerOpen={drawerOpen} toggleDrawer={toggleDrawer(false)} categorias={categorias || []} />
 
             </Header.areaHeader>

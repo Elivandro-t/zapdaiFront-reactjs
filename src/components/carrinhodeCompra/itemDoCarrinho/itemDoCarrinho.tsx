@@ -1,5 +1,4 @@
 import type { carrinhoType } from "../../../types/carrinhoType"
-import type { Itens } from "../../../types/types"
 import Template from "./itemDoCarrinhoCss"
 type Props = {
     data:carrinhoType[]
