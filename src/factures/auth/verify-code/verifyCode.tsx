@@ -10,9 +10,6 @@ position: relative;
 flex-direction: column;
 padding: 0 20px;
 align-items: center;
-
-
-
   @media screen and (min-width: 560px){
 background-color:var(--cor-auth);
 justify-content: center;
@@ -36,7 +33,8 @@ gap: 20px;
   @media screen and (min-width:430px){
       width: 490px;
       background-color: #FFF;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       padding: 40px 30px;
 
 

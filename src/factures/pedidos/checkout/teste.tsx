@@ -1,35 +1,24 @@
-import { useEffect, useRef, useState } from "react";
 
-export default function CheckoutCustom() {
+import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
+import Template from "./form"
+export type CheckoutCustomRef = {
+  submitForm: () => void;
+};
+const CheckoutCustom = forwardRef<CheckoutCustomRef>((props, ref) => {
+  const pagar = (window as any);
   const formRef = useRef<HTMLFormElement>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const script = document.createElement("script");
 
   useEffect(() => {
-    // cria o script do tokenizecard.js dinamicamente
-    const script = document.createElement("script");
     script.src = "https://checkout.pagar.me/v1/tokenizecard.js";
     script.async = true;
     script.setAttribute("data-pagarmecheckout-app-id", "pk_test_1QMVeBVMF0cvegqz");
     document.body.appendChild(script);
 
     script.onload = () => {
-      if (!(window as any).PagarmeCheckout) {
-        console.error("PagarmeCheckout não disponível");
-        return;
-      }
 
       const success = (data: any) => {
-        console.log("Token gerado:", data.pagarmetoken-0);
-          console.log("Token :", data);
-        setToken(data.pagarmetoken);
-
-        // aqui você pode enviar para seu backend
-        fetch("/api/save-card", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ card_token: data.pagarmetoken }),
-        });
-
+        console.log("Token gerado:", data);
         return false; // permite o envio do form
       };
 
@@ -37,7 +26,7 @@ export default function CheckoutCustom() {
         console.error("Erro ao gerar token:", error);
       };
 
-      (window as any).PagarmeCheckout.init(success, fail);
+      pagar.PagarmeCheckout.init(success, fail);
     };
 
     return () => {
@@ -45,47 +34,87 @@ export default function CheckoutCustom() {
     };
   }, []);
 
+  useImperativeHandle(ref, () => ({
+    submitForm: () => {
+      if (!formRef.current) {
+        console.warn("[CheckoutCustom] submitForm chamado mas formRef vazio");
+        return;
+      }
+      console.log("[CheckoutCustom] submitForm -> requestSubmit()");
+      // requestSubmit dispara o evento submit do form (melhor que dispatchEvent)
+      try {
+        formRef.current.requestSubmit();
+      } catch (e) {
+        console.warn("[CheckoutCustom] requestSubmit falhou, usando dispatchEvent fallback", e);
+        formRef.current.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      }
+    },
+  }));
+
   return (
-    <form ref={formRef} data-pagarmecheckout-form onSubmit={(e) => e.preventDefault()}>
-      <input
-        type="text"
-        name="holder-name"
-        data-pagarmecheckout-element="holder_name"
-        placeholder="Nome no cartão"
-        required
-      />
-      <input
+    <Template.form ref={formRef} data-pagarmecheckout-form onSubmit={(e) => e.preventDefault()}>
+      <Template.campos
         type="text"
         name="card-number"
         data-pagarmecheckout-element="number"
         placeholder="Número do cartão"
         required
       />
-      <input
+      <Template.campos
+         id="holder-name"
+        type="text"
+        name="holder-name"
+        data-pagarmecheckout-element="holder_name"
+        placeholder="Titular do cartão"
+        required
+      />
+      {/* <Template.campos
         type="text"
         name="card-exp-month"
         data-pagarmecheckout-element="exp_month"
         placeholder="Mês"
         required
-      />
-      <input
+      /> */}
+
+      <Template.Card>
+        {/* <Template.campos
         type="text"
         name="card-exp-year"
         data-pagarmecheckout-element="exp_year"
         placeholder="Ano"
         required
-      />
-      <input
-        type="text"
-        name="cvv"
-        data-pagarmecheckout-element="cvv"
-        placeholder="CVV"
-        required
-      />
-      <input type="text" name="buyer-name" placeholder="Nome do comprador" />
-      <button type="submit">Enviar</button>
-
-      {token && <p>Token gerado: {token}</p>}
-    </form>
+      /> */}
+        <Template.campos
+          type="text"
+          name="cvv"
+          data-pagarmecheckout-element="cvv"
+          placeholder="CVV"
+          required
+        />
+        <Template.campos2
+          type="text"
+          name="card-exp-month"
+          data-pagarmecheckout-element="exp_month"
+          placeholder="Mês"
+          required
+        />
+        <Template.campos2
+          type="text"
+          name="card-exp-year"
+          data-pagarmecheckout-element="exp_year"
+          placeholder="Anos"
+          required
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
+            if (value.length >= 2) {
+              value = value.slice(0, 2) + '-' + value.slice(2, 4); // transforma em MM-YY
+            }
+            e.target.value = value;
+          }}
+        />
+      </Template.Card>
+    </Template.form>
   );
-}
+});
+
+export default CheckoutCustom;

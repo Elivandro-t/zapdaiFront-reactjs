@@ -8,7 +8,6 @@ import { ProvaiderProdutos } from './reducer/ProdutoProvaider/providerProdutos.t
 import { ProviderUser } from './reducer/userProvider/userProvider.tsx'
 import { StrictMode } from 'react'
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
     <NetWorkContext>
       <SnackbarProvider>
         <ProvaiderProdutos>
@@ -20,7 +19,6 @@ createRoot(document.getElementById('root')!).render(
       </SnackbarProvider >
     </NetWorkContext>
 
-  </StrictMode>
 
 
 )

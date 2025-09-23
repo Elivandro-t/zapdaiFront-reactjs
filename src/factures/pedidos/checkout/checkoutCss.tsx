@@ -4,10 +4,10 @@ export default {
     background-color: #f5f5f5;
   `,
   Container: styled.div`
-    max-width: 900px;
+    max-width: 980px;
     margin:  auto;
     box-sizing:border-box;
-    padding: 50px;
+    padding: 50px ;
     height: 100vh;
     font-family: Arial, sans-serif;
   `,
@@ -17,14 +17,13 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding:15px 20px;
+    padding:35px 20px;
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   `,
  titulo:styled.div`
  width: 100%;
  font-weight:bold;
- text-align: center;
  color: red;
  `,
   Button: styled.button`
@@ -77,12 +76,32 @@ export default {
   border-radius: 10px;
   justify-content: space-between;
   border: 1px solid #888;
-  padding: 30px 0;
+  color: #837878;
+  padding: 30px 10px;
   cursor: pointer;
   &:hover{
     transform: scale(0.97);
+    outline: auto;
+    outline-color:#5ed0f3;
   }
     
-  `
+  `,
+  imagem:styled.img`
+  width: 80px;
+  object-fit: contain;
+  `,
+  Cardtitulo:styled.span`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  `,
+  CardSubtitulo:styled.small``,
+    CardCenter:styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    `,
+
 
 };

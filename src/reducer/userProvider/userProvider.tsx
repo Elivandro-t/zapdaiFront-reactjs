@@ -21,12 +21,18 @@ type children = {
 export const contextProvider = createContext<JwtPayload|null>(null)
 
 export const ProviderUser = ({children}:children)=>{
-    const [usuario,setUser] = useState<JwtPayload | null>(null)
-    useEffect(()=>{
-      const data = subjet() as any;
-      
-      setUser(data)
-    },[])
+     const [usuario, setUser] = useState<JwtPayload | null>(null);
+
+  useEffect(() => {
+    try {
+      const data = subjet() as JwtPayload;
+      setUser(data);
+    } catch (err) {
+      console.error("Erro ao pegar usuário:", err);
+      setUser(null);
+    }
+  }, []);
+
     return(
         <contextProvider.Provider value={usuario}>
             {children}

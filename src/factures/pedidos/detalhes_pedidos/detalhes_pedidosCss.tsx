@@ -2,17 +2,18 @@ import { styled } from "styled-components";
 export default {
   Area:styled.div`
     background-color: #f5f5f5;
+
   `,
   Container: styled.div`
     max-width: 900px;
     margin:  auto;
     box-sizing:border-box;
     padding: 50px;
-    height: 100vh;
     font-family: Arial, sans-serif;
+        background: #fff;
+
   `,
   Card: styled.div`
-    background: #fff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;

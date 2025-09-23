@@ -36,7 +36,8 @@ gap: 20px;
   @media screen and (min-width:430px){
       width: 420px;
       background-color: #FFF;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       padding: 50px 30px;
       height: 350px;
 
