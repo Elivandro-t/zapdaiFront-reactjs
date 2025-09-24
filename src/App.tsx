@@ -13,6 +13,7 @@ import { MeusPedidos } from "./factures/pedidos/meus_pedidos/meus_pedidos";
 import { NotFoundPage } from "./factures/404/NotFund";
 import PedidoDetalhes from "./factures/pedidos/detalhes_pedidos/detalhes_pedidos";
 import CheckoutPedidos from "./factures/pedidos/checkout/checkout";
+import ResumoPedidos from "./factures/pedidos/Resumo_de_Compra/Resumo";
 const App = () => {
 
   return (
@@ -50,6 +51,12 @@ const App = () => {
           <Route path="/pagamento-pedidos/checkout" element={
           <ProtectedRoute>
             <CheckoutPedidos key={Date.now()} 
+          />
+          </ProtectedRoute>
+          }/>
+          <Route path="/resumo_pedidos/payment" element={
+          <ProtectedRoute>
+            <ResumoPedidos key={Date.now()} 
           />
           </ProtectedRoute>
           }/>

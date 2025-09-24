@@ -1,5 +1,5 @@
 import axios from "axios"
-const base = "https://api.zapdai.com"
+const base = "http://localhost:8085"
 
 
 
@@ -13,9 +13,6 @@ const lista_pedidos = async(endpoint:string,numero:number)=>{
     return  resposta.data;
 }
 const search_pedidos = async(endpoint:string,body:{numeroDoPedido:string,usuarioId:number})=>{
-              console.log("resposta do body "+body.numeroDoPedido)
-               console.log("resposta do usaurio "+body.usuarioId)
-
     const resposta =  await axios.post(base+endpoint,body);
     return  resposta.data;
 }

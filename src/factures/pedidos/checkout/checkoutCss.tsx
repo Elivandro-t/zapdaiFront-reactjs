@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 export default {
-  Area:styled.div`
+  Area: styled.div`
     background-color: #f5f5f5;
   `,
   Container: styled.div`
-    max-width: 980px;
+    max-width: 1080px;
     margin:  auto;
     box-sizing:border-box;
     padding: 50px ;
@@ -21,21 +21,24 @@ export default {
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   `,
- titulo:styled.div`
+  titulo: styled.div`
  width: 100%;
  font-weight:bold;
  color: red;
  `,
   Button: styled.button`
+      width: 90%;
     background-color: #4caf50;
     color: #fff;
     border: none;
-    padding: 12px 20px;
+    padding: 12px 0;
     font-size: 14px;
     border-radius: 6px;
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 
     &:hover {
       background-color: #45a049;
@@ -50,6 +53,7 @@ export default {
     justify-content: space-between;
     font-size: 14px;
     margin-bottom: 5px;
+    gap: 20px;
   `,
   TotalRow: styled.div`
     display: flex;
@@ -58,7 +62,7 @@ export default {
     font-size: 16px;
     margin-top: 10px;
   `,
-  checkout:styled.div`
+  checkout: styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -66,8 +70,17 @@ export default {
   margin-right:10px;
 
   `,
-  detalhesItens:styled.div``,
-  cardPagamento:styled.div`
+  detalhesItens: styled.div`
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 5px 30px;
+
+  `,
+  cardPagamento: styled.div`
     width: 100%;
 
   display: flex;
@@ -86,17 +99,17 @@ export default {
   }
     
   `,
-  imagem:styled.img`
+  imagem: styled.img`
   width: 80px;
   object-fit: contain;
   `,
-  Cardtitulo:styled.span`
+  Cardtitulo: styled.span`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: 600;
   `,
-  CardSubtitulo:styled.small``,
-    CardCenter:styled.div`
+  CardSubtitulo: styled.small``,
+  CardCenter: styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;

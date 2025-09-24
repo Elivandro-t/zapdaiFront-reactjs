@@ -4,6 +4,9 @@ import Template from "./checkoutCss"
 import { useContext, useEffect, useState } from "react";
 import { LoadingSecundary } from "../../../components/LoadingSecundary/LoadingSecundary";
 import api from "../../../service/api_cunsulto_produto";
+import auth from "../../../service/api";
+import ApiPagamento from "../../../service/ApiPagamento.tsx/apiPagamento";
+
 import { contextProvider } from "../../../reducer/userProvider/userProvider";
 import type { Pedido } from "../../../types/pedidos";
 import logopix from "../../../assets/logoPix.png"
@@ -12,6 +15,8 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { SimpleDialog } from "../../../components/detalhesProdutos/detalhesProdutos";
 import CheckoutCustom, { type CheckoutCustomRef } from "./teste";
 import { useRef } from "react";
+import type { PedidoPagamento } from "../../../types/pagamento/payment";
+import type { PixPayment } from "../../../types/pagamento/pix";
 
 
 const formdePagamento = [
@@ -29,7 +34,7 @@ const formdePagamento = [
     titulo: "Aprovação imedita",
     icone: "",
     ativo: false,
-    method: "credit"
+    method: "credit_card"
 
   },
   {
@@ -56,6 +61,7 @@ const CheckoutPedidos = () => {
   const [pix, setPix] = useState<boolean>(false)
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
+  const [pixPg,SetPixPg] = useState<PixPayment|null>(null)
 
   // rook para ouvir o a busca da api
   useEffect(() => {
@@ -84,7 +90,7 @@ const CheckoutPedidos = () => {
         return (
           <Template.imagem src={logopix} />
         );
-      case "credit":
+      case "credit_card":
         return (
           <PaymentIcon sx={{ fontSize: 40 }} />
         )
@@ -100,10 +106,9 @@ const CheckoutPedidos = () => {
     setSelectedMethod(method)
     switch (method) {
       case "pix":
-        setPix(true)
         setCredit(false)
         break
-      case "credit":
+      case "credit_card":
         setCredit(true)
         setPix(false)
         break
@@ -122,13 +127,55 @@ const CheckoutPedidos = () => {
   }
 
   const handlePay = () => {
-  if (selectedMethod === "credit" || selectedMethod === "debit") {
-    childRef.current?.submitForm();
-  } else if (selectedMethod === "pix") {
-    setPix(true);
-  }
-};
+    if (selectedMethod === "credit_card" || selectedMethod === "debit") {
+      childRef.current?.submitForm();
+    } else if (selectedMethod === "pix") {
+      setLoading(true)
+      hendlePagamentopix()
+    }
+  };
 
+  const hendlePagamentopix = async () => {
+    try{
+      const json = await auth.buscarUsuario(usuario?.sub as any);
+    if (json !== null) {
+      const consumer = json;
+      const pixPayment: PedidoPagamento = {
+        numeroDoPedido: numeroDoPedido,
+        consumer: {
+          document: consumer?.cpf.replace(/\D/g, ''),
+          type: "individual",
+          name: consumer?.nome,
+          email: consumer?.email,
+          phones: {
+            mobile_phone: {
+              area_code: consumer?.phoneNumer.slice(0, 2),
+              number: consumer?.phoneNumer.slice(2),
+              country_code: "55"
+            }
+          }
+        },
+        payments: [
+          {
+            payment_method: selectedMethod
+          }
+        ]
+      }
+      const resposta = await ApiPagamento.pagamento(pixPayment);
+       if(resposta!==null){
+        SetPixPg(resposta)
+         setTimeout(()=>{
+          setLoading(false)
+           setPix(true);
+         },200)
+       }
+
+    }
+    return null;
+    }catch(error:any){
+      alert("Ocorreu um erro "+error)
+    }
+  }
   return (
     <Template.Area>
       <HeaderSecund func={navegarMaket}></HeaderSecund>
@@ -153,12 +200,12 @@ const CheckoutPedidos = () => {
               ))}
               <>
                 {credit &&
-                  <CheckoutCustom ref={childRef}></CheckoutCustom>
+                  <CheckoutCustom ref={childRef} numeroDoPedido={numeroDoPedido} selectedMethod={selectedMethod} empresaName={pedido?.produtos[0]?.empresa?.nomeCompania}></CheckoutCustom>
                 }
                 {pix &&
-                  <SimpleDialog open={pix} selectedValue={true} onClose={function (): void {
-                    setPix(false)
-                  }} />
+                  <SimpleDialog open={pix} respostaPix={pixPg as any} onClose={function (): void {
+                  setPix(false);
+                } } nomeLoja={""}  />
                 }
                 {
 
@@ -177,6 +224,7 @@ const CheckoutPedidos = () => {
                 Subtotal: R$ 15,80<br />
                 Frete: R$ 0,00
               </span>
+              <Template.Button onClick={handlePay}>PAGAR  R$ {pedido?.precoTotal}</Template.Button>
             </Template.detalhesItens>
           </Template.SummaryRow>
           <Template.SummaryRow>
@@ -184,7 +232,6 @@ const CheckoutPedidos = () => {
 
             </Template.titulo>
           </Template.SummaryRow>
-          <Template.Button onClick={handlePay}>PAGAR {pedido?.precoTotal}</Template.Button>
         </Template.Card>
       </Template.Container>
       {loading &&

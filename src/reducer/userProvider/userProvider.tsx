@@ -26,7 +26,14 @@ export const ProviderUser = ({children}:children)=>{
   useEffect(() => {
     try {
       const data = subjet() as JwtPayload;
-      setUser(data);
+      var usuariocrado = localStorage.getItem("order")
+      if(usuariocrado===null){
+        localStorage.setItem("order",data.usuarioId as any)
+      }else{
+        setUser(null)
+      }
+                setUser(data);
+
     } catch (err) {
       console.error("Erro ao pegar usuário:", err);
       setUser(null);
