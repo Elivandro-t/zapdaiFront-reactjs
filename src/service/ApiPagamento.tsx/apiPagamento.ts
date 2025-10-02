@@ -1,6 +1,6 @@
 import type { PedidoPagamento } from "../../types/pagamento/payment";
 import axios from "axios";
-const base = "http://localhost:8085";
+const base = "https://api.zapdai.com";
 
 const Pagamento = async(endpoint:string,data:PedidoPagamento)=>{
      const resposta = await axios.post(base+endpoint,data);

@@ -14,6 +14,10 @@ import { NotFoundPage } from "./factures/404/NotFund";
 import PedidoDetalhes from "./factures/pedidos/detalhes_pedidos/detalhes_pedidos";
 import CheckoutPedidos from "./factures/pedidos/checkout/checkout";
 import ResumoPedidos from "./factures/pedidos/Resumo_de_Compra/Resumo";
+import { Busca_categoria } from "./factures/marketplace/sub_rotas/buscas_categoria/busca_categoria";
+import { Endereco } from "./factures/endereco/endereco";
+import { CookiesBanner } from "./components/cookies/CookiesComponets";
+import { HomeComponent } from "./factures/auth/teste/home";
 const App = () => {
 
   return (
@@ -28,6 +32,7 @@ const App = () => {
             <MarketPlace key={Date.now()} />
           } >
           <Route  path="produtos" element={<ProdutosBuscaUnit />} />
+          <Route  path="categorias" element={<Busca_categoria />} />
           <Route index  element={<MainComponent/>}/>
         </Route>
         <Route index path="verify" element={<LoadingR />} />
@@ -36,6 +41,8 @@ const App = () => {
         <Route path="/empresa/:name" element={<Empresa />} />
         <Route path="/code" element={<Verify_code />} />
         <Route path="/melhores-planos" element={<ZapDaiMarket key={Date.now()} />}/>
+
+        <Route path="/teste" element={<HomeComponent key={Date.now()} />}/>
         <Route path="/meus-pedidos" element={
           <ProtectedRoute>
             <MeusPedidos key={Date.now()} 
@@ -57,6 +64,12 @@ const App = () => {
           <Route path="/resumo_pedidos/payment" element={
           <ProtectedRoute>
             <ResumoPedidos key={Date.now()} 
+          />
+          </ProtectedRoute>
+          }/>
+          <Route path="/forma-entrega" element={
+          <ProtectedRoute>
+            <Endereco key={Date.now()} 
           />
           </ProtectedRoute>
           }/>

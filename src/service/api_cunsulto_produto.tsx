@@ -1,5 +1,5 @@
 import axios from "axios"
-const base = "http://localhost:8085"
+const base = "https://api.zapdai.com"
 
 
 
@@ -16,6 +16,10 @@ const search_pedidos = async(endpoint:string,body:{numeroDoPedido:string,usuario
     const resposta =  await axios.post(base+endpoint,body);
     return  resposta.data;
 }
+const categoriaItensProdutos = async (endpoint:string)=>{
+    const resposta = await axios.get(base+endpoint);
+    return resposta.data;
+}
 
 
 const consulta = {
@@ -30,6 +34,10 @@ const consulta = {
    pedidos_busca:async(usuarioId:number,numeroDoPedido:string)=>{
        const json = await search_pedidos("/zapdai/v1/pedidos/search",{numeroDoPedido,usuarioId});
        return json;
+   },
+   categoria:async(nome:string)=>{
+      const json = await categoriaItensProdutos(`/zapdai/v1/empresas/categorias?nome=${nome}`);
+      return json;
    }
 }
 

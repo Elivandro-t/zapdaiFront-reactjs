@@ -10,6 +10,7 @@ const ItemContainer = styled.a`
   color: #333;
   border-radius: 8px;
   transition: background 0.2s;
+  cursor: pointer;
 
   &:hover {
     background: #f5f5f5;
@@ -29,12 +30,12 @@ const Label = styled.span`
 type Props = {
   nome: string;
   iconUrl: string;
-  href?: string;
+  hendle:(n:any)=>void
 };
 
-export const CategoriaItem = ({ nome, iconUrl, href = "#" }: Props) => {
+export const CategoriaItem = ({ nome, iconUrl,hendle }: Props) => {
   return (
-    <ItemContainer href={href}>
+    <ItemContainer onClick={()=>hendle(nome)}>
       <IconImg src={iconUrl} alt={nome} />
       <Label>{nome}</Label>
     </ItemContainer>

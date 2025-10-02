@@ -56,10 +56,14 @@ export const HeaderComponent = () => {
         setAtivo(false)
     }
     const handleClick = () => {
-        console.info('You clicked the Chip.');
+        console.info('teste.');
     };
     const hendleHome = () => {
         navigate("/marketPlace")
+    }
+
+      const hendleCategoriasHome = (categorias:string) => {
+        navigate(`/marketPlace/categorias?order=${categorias}`)
     }
 
     const navegarMaket = () => {
@@ -108,7 +112,7 @@ export const HeaderComponent = () => {
 
                 <Header.categoriasItens>
                     <Button style={{ marginLeft: 25 }} onClick={toggleDrawer(true)}>
-                        <MenuOpenRoundedIcon />
+                        Categorias <MenuOpenRoundedIcon />
                     </Button>
                     <Stack direction="row" spacing={2}>
                         {
@@ -116,7 +120,7 @@ export const HeaderComponent = () => {
                                 <Chip
                                     label={ItemsRow.nome}
                                     variant="outlined"
-                                    onClick={handleClick}
+                                    onClick={()=>hendleCategoriasHome(ItemsRow.nome)}
                                     icon={<img width={24} height={15} src={ItemsRow.icone} />}
                                 />
                             ))

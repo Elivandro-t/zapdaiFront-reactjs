@@ -7,10 +7,11 @@ const rotasPublicas = ["/categorias/lista",
   "/zapdai/v1/usuario/usuario-code",
   "/zapdai/v1/empresas/banner",
   "/zapdai/v1/produtos/unit",
-  "/zapdai/v1/usuario/refreshToken"
+  "/zapdai/v1/usuario/refreshToken",
+  "/zapdai/v1/empresas/categorias"
 
 ];
-const base = "http://localhost:8085";
+const base = "https://api.zapdai.com";
 import { notify } from "./snackbarService";
 async function buscaApi(endpoint: string) {
   try {

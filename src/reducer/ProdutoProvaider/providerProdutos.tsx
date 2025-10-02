@@ -34,7 +34,7 @@ export const ProvaiderProdutos = ({ children }: children) => {
     }, [carrinho]);
 
     function removeItem(id: number) {
-        setCarrinho((prev) => prev.filter((p) => p.id !== id));
+        setCarrinho((prev) => prev.filter((p) => p.produtoId !== id));
     }
      function removeItemLogado() {
         setCarrinho(()=>[]);
@@ -44,21 +44,22 @@ export const ProvaiderProdutos = ({ children }: children) => {
     function addItem(produto: produto, valor: number) {
         const novoItem: carrinhoType = {
             nomeProduto: produto?.productName,
-            id: produto?.idProduto,
+            produtoId: produto?.idProduto,
             imageUrl: produto?.imgProduct,
             quantidade: valor,
             price: produto?.price,
             empresaId: produto?.empresaDTO.id,
-            categoria: ""
+            categoria: "",
+            nomeCompania: produto?.empresaDTO?.nomeCompania,
         }
         setCarrinho((prev) => {
             // Se tiver item de empresa diferente, limpa carrinho
-            if (prev.some((e) => e.empresaId !== novoItem.empresaId && e.id !== novoItem.id)) {
+            if (prev.some((e) => e.empresaId !== novoItem.empresaId && e.produtoId !== novoItem.produtoId)) {
                 alert("Produto de empresa diferente! Carrinho limpo.");
                 return [novoItem];
             }
 
-            const index = prev.findIndex((item) => item.id === novoItem.id);
+            const index = prev.findIndex((item) => item.produtoId === novoItem.produtoId);
             if (index >= 0) {
                 // Atualiza quantidade
                 const atualizado = [...prev];

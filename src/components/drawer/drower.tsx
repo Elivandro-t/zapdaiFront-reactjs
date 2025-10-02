@@ -2,12 +2,19 @@ import Drawer from "@mui/material/Drawer"
 import logo from "../../assets/logowhite.png"
 import { CategoriaItem } from "../header/CategoriaItem"
 import Base from "./drawerCss"
+import { useNavigate } from "react-router-dom"
 type drawer = {
     drawerOpen: boolean,
     toggleDrawer: (n: any) => any,
     categorias: any[]
 }
+
 export const Drower = ({ drawerOpen, toggleDrawer, categorias }: drawer) => {
+    const navigate = useNavigate()
+     const hendleCategoriasHome = (categorias:string) => {
+        navigate(`/marketPlace/categorias?order=${categorias}`)
+    }
+
     return (
         <Drawer open={drawerOpen} onClose={toggleDrawer}>
             <Base.Container>
@@ -20,7 +27,7 @@ export const Drower = ({ drawerOpen, toggleDrawer, categorias }: drawer) => {
             {/* Coloque aqui o conteúdo que você quer mostrar no Drawer */}
             <div style={{ width: 250, padding: 16, display: "flex", flexDirection: "column" }}>
                 {categorias?.flatMap(ItemsRow => (
-                    <CategoriaItem nome={ItemsRow.nome} iconUrl={ItemsRow.icone} />
+                    <CategoriaItem hendle={()=>hendleCategoriasHome(ItemsRow.nome)}  nome={ItemsRow.nome} iconUrl={ItemsRow.icone} />
 
                 ))}
 

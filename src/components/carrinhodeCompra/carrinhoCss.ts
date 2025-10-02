@@ -1,5 +1,7 @@
 import styled from "styled-components";
-
+type ButtonProps = {
+  $variant?: "primary" | "secondary"; // prefixo $ para evitar passar pro DOM
+};
 export default {
   MainArea: styled.div`
       position: fixed;
@@ -9,16 +11,35 @@ export default {
       background-color:rgba(0,0,0,0.5);
       display: flex;
       justify-content:end;
+      height: 100vh;
     `,
   AreaCar: styled.div`
+  display: flex;
+  flex-direction: column;
      max-width:620px;
      width: 100%;
-     height: 100vh;
      box-sizing:border-box;
      background-color:#FFF;
      position: relative;
 
     `,
+    AreaDetalhes: styled.div`
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+     width: 100%;
+     box-sizing:boder-box;
+     margin: 10px 0;
+     background-color:#FFF;
+     padding: 0px 10px;
+
+    `,
+  nome:styled.span<ButtonProps>`
+   
+  font-weight: ${({ $variant }) =>
+    $variant === "primary" ? "bold" : "4000"};
+  `,
+  price:styled.small``,
   AreaHeader: styled.div`
      width: 100%;
      height: 40px;
@@ -47,8 +68,8 @@ export default {
 
     `,
   AreaMain: styled.div`
-    height:90vh;
     position: relative;
+    box-sizing:border-box;
     display: flex;
     flex-direction: column;
          padding: 0 10px;

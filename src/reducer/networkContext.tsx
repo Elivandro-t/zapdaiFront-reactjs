@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import NoConnectionModal from "../components/connection"
 
 type NetworkContextType = {
     isOnline:boolean
@@ -24,35 +25,38 @@ export const NetWorkContext = ({children}:{children:ReactNode})=>{
               {children}
                {/* Componente global de alerta */}
       {!isOnline && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height:"100vh",
-            backgroundColor: " rgba(255, 165, 0, 0.1)",
-            color: "white",
-            textAlign: "center",
-            padding: "10px",
-            zIndex: 9999,
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"center"
-          }}
-        >
-          <div  style={{
-            position: "fixed",
-            backgroundColor: "#503e0d",
-            color: "white",
-            textAlign: "center",
-            padding: "30px",
-            borderRadius:'5px',
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"center"
-          }}>❌ Sem conexão com a internet</div>
-        </div>
+        // <div
+        //   style={{
+        //     position: "fixed",
+        //     top: 0,
+        //     left: 0,
+        //     width: "100%",
+        //     height:"100vh",
+        //     backgroundColor: " rgba(255, 165, 0, 0.1)",
+        //     color: "white",
+        //     textAlign: "center",
+        //     padding: "10px",
+        //     zIndex: 9999,
+        //     display:"flex",
+        //     alignItems:"center",
+        //     justifyContent:"center"
+        //   }}
+        // >
+        //   <div  style={{
+        //     position: "fixed",
+        //     backgroundColor: "#503e0d",
+        //     color: "white",
+        //     textAlign: "center",
+        //     padding: "30px",
+        //     borderRadius:'5px',
+        //     display:"flex",
+        //     alignItems:"center",
+        //     justifyContent:"center"
+        //   }}>❌ Sem conexão com a internet</div>
+        // </div>
+        <NoConnectionModal onRetry={function (): void {
+            throw new Error("Function not implemented.")
+          } }></NoConnectionModal>
       )}
         </NetProvider.Provider>
     )

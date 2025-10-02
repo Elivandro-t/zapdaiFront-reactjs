@@ -10,6 +10,7 @@ export type produto = {
     available: boolean;
     available_status: "DISPONIVEL" | "INDISPONIVEL";
     empresaDTO:{
-        id:any
+        id:any,
+        nomeCompania:string
     }
 }

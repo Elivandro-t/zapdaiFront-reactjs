@@ -3,6 +3,7 @@ import { FootComponet } from "../../components/footer/Footter"
 import { HeaderComponent } from "../../components/header/Header"
 import Makert from "./marcketplace"
 import { useEffect } from "react";
+import { CookiesBanner } from "../../components/cookies/CookiesComponets";
 
 export const MarketPlace = () => {
     useEffect(()=>{
@@ -14,6 +15,8 @@ export const MarketPlace = () => {
             <Makert.Container_int>
                 <Outlet></Outlet>
             </Makert.Container_int>
+                  <CookiesBanner></CookiesBanner> 
+
             <FootComponet></FootComponet>
         </Makert.container>
     )
